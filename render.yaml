@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: krishna-ai-backend
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: ALLOW_GUEST_TTS
+        value: "true"
+      - key: MAX_REQUESTS_PER_MINUTE
+        value: "20"
+      - key: MAX_GUEST_REQUESTS_PER_HOUR
+        value: "120"
+      - key: SARVAM_CHARACTER_CAP
+        value: "30000"
+      - key: SARVAM_SPEAKER
+        value: shubh
+      - key: GROQ_API_KEY
+        sync: false
+      - key: SARVAM_API_KEY
+        sync: false
